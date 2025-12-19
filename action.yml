@@ -1,0 +1,67 @@
+name: 'Load Linear Issues'
+description: 'Extract Linear issue references from Git commits for use in downstream actions'
+author: 'Sandgarden'
+
+branding:
+  icon: 'link'
+  color: 'purple'
+
+inputs:
+  linear-api-key:
+    description: 'Linear API key for authentication'
+    required: true
+  team-keys:
+    description: 'Comma-separated list of Linear team keys to filter (e.g., "ENG,PROD"). If not specified, all accessible teams are used.'
+    required: false
+  output-file:
+    description: 'Path to write the JSON output artifact'
+    required: false
+    default: 'linear-issues.json'
+
+  # Changeset specification (exactly one required)
+  releases-count:
+    description: 'Number of recent release tags to include commits from'
+    required: false
+  time-range-start:
+    description: 'ISO 8601 timestamp for start of time range (requires time-range-end)'
+    required: false
+  time-range-end:
+    description: 'ISO 8601 timestamp for end of time range (requires time-range-start)'
+    required: false
+  commits-count:
+    description: 'Number of most recent commits to scan'
+    required: false
+  commits-since-sha:
+    description: 'Scan all commits after this SHA (exclusive)'
+    required: false
+  commits-shas:
+    description: 'Comma-separated list of specific commit SHAs to scan'
+    required: false
+  commits-start-sha:
+    description: 'Start SHA for commit range (requires commits-end-sha or defaults to HEAD)'
+    required: false
+  commits-end-sha:
+    description: 'End SHA for commit range (defaults to HEAD)'
+    required: false
+  include-start-commit:
+    description: 'Include the start commit in range (default: false)'
+    required: false
+    default: 'false'
+  tags-start:
+    description: 'Start tag for tag range'
+    required: false
+  tags-end:
+    description: 'End tag for tag range (defaults to HEAD)'
+    required: false
+
+outputs:
+  issue-keys:
+    description: 'Comma-separated list of Linear issue keys found'
+  issue-links:
+    description: 'Comma-separated list of Linear issue URLs'
+  issue-count:
+    description: 'Number of unique Linear issues found'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
