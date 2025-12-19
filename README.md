@@ -5,7 +5,7 @@ A GitHub Action that extracts Linear issue references from Git commits for use i
 ## Usage
 
 ```yaml
-- uses: your-org/load-linear-issues@v1
+- uses: sandgardenhq/load-linear-issues@v1
   id: linear
   with:
     linear-api-key: ${{ secrets.LINEAR_API_KEY }}
