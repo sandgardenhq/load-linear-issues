@@ -26,6 +26,9 @@ async function fetchTeamKeys(client, filterKeys) {
     }
 }
 function buildIssueUrl(workspaceSlug, issueKey) {
-    return `https://linear.app/${workspaceSlug}/issue/${issueKey}`;
+    if (workspaceSlug) {
+        return `https://linear.app/${workspaceSlug}/issue/${issueKey}`;
+    }
+    return `https://linear.app/issue/${issueKey}`;
 }
 //# sourceMappingURL=linear.js.map

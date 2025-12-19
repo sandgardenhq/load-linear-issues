@@ -28,5 +28,8 @@ export async function fetchTeamKeys(
 }
 
 export function buildIssueUrl(workspaceSlug: string, issueKey: string): string {
-  return `https://linear.app/${workspaceSlug}/issue/${issueKey}`;
+  if (workspaceSlug) {
+    return `https://linear.app/${workspaceSlug}/issue/${issueKey}`;
+  }
+  return `https://linear.app/issue/${issueKey}`;
 }
