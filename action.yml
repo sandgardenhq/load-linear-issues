@@ -4,7 +4,7 @@ author: 'Sandgarden'
 
 branding:
   icon: 'link'
-  color: 'purple'
+  color: 'green'
 
 inputs:
   linear-api-key:
