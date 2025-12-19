@@ -3,7 +3,7 @@ description: 'Extract Linear issue references from Git commits for use in downst
 author: 'Sandgarden'
 
 branding:
-  icon: 'link'
+  icon: 'list'
   color: 'green'
 
 inputs:
