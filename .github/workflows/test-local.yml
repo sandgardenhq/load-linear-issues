@@ -1,0 +1,29 @@
+# .github/workflows/test-local.yml
+name: Test Local
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Load Linear Issues
+        uses: ./
+        id: linear
+        with:
+          linear-api-key: ${{ secrets.LINEAR_API_KEY }}
+          commits-count: '10'
+
+      - name: Display Results
+        run: |
+          echo "Issue Count: ${{ steps.linear.outputs.issue-count }}"
+          echo "Issue Keys: ${{ steps.linear.outputs.issue-keys }}"
+          echo "Issue Links: ${{ steps.linear.outputs.issue-links }}"
+          echo ""
+          echo "Full JSON Output:"
+          cat linear-issues.json
